@@ -1,0 +1,24 @@
+{
+  "name": "git-tag-test",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^7.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KatarzynaPaszko/git-tag-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KatarzynaPaszko/git-tag-test/issues"
+  },
+  "homepage": "https://github.com/KatarzynaPaszko/git-tag-test#readme"
+}

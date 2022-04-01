@@ -1,0 +1,18 @@
+#!/bin/sh
+
+version='@itv/fe-hades@2.0.0'
+
+while read localname localhash remotename remotehash;
+do
+	if test "$localname" = "refs/tags/$version"
+	then
+	echo 'Error: Attempt to push tag' $version
+	echo 'This can cause problems in CHANGELOG.md file'
+	echo 'Please make sure you are not pushing tag' $version 'with your changes.'
+	echo 'To delete this tag locally, run command:'
+	echo 'git tag -d' $version
+	echo 'If you are using some Git GUI (Sourcetree, GitExtensions, Gitkraken etc.) to manage your code, then make sure you have unchecked option "Push all tags"'
+	echo 'If you know what you are doing and you still want to push this tag, then you can disable this check in .git/hooks/pre-push'
+	exit 1
+	fi
+done
