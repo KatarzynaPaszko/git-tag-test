@@ -2,6 +2,7 @@
 
 while read localname localhash remotename remotehash;
 do
+	echo localname $localname
 	WORDTOREMOVE="refs/tags/"
 	localname=${localname//$WORDTOREMOVE/}
 	echo "Error: Attempt to push local tag that does not exist in remote" $localname
@@ -9,5 +10,6 @@ do
 	echo "To delete this tag locally, run command:"
 	echo " git tag -d" $localname
 	echo "If you still want to push this tag, you can disable the check in .git/hooks/pre-push"
+	echo localname $localname
 	exit 1
 done
