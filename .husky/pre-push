@@ -1,23 +1,13 @@
 #!/bin/sh
 
-echo 1ss
-
-version='@itv/fe-hades@2.0.0'
-
-echo $version
 while read localname localhash remotename remotehash;
 do
-    echo $version
-    echo $localname localhash remotename remotehash
-	if test "$localname" = "refs/tags/$version"
-	then
-	echo 'Error: Attempt to push tag' $version
-	echo 'This can cause problems in CHANGELOG.md file'
-	echo 'Please make sure you are not pushing tag' $version 'with your changes.'
-	echo 'To delete this tag locally, run command:'
-	echo 'git tag -d' $version
-	echo 'If you are using some Git GUI (Sourcetree, GitExtensions, Gitkraken etc.) to manage your code, then make sure you have unchecked option "Push all tags"'
-	echo 'If you know what you are doing and you still want to push this tag, then you can disable this check in .git/hooks/pre-push'
+	WORDTOREMOVE="refs/tags/"
+	localname=${localname//$WORDTOREMOVE/}
+	echo "Error: Attempt to push local tag that does not exist in remote" $localname
+	echo "Please make sure you are not pushing tag" $localname 'with your changes.'
+	echo "To delete this tag locally, run command:"
+	echo " git tag -d" $localname
+	echo "If you still want to push this tag, you can disable the check in .git/hooks/pre-push"
 	exit 1
-	fi
 done
